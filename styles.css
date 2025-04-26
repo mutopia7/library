@@ -1,0 +1,57 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html, body{
+    height: 100%;
+}
+
+.all{
+    display: grid;
+    height: 100%;
+    grid-template: 100% / 25% 75%;
+}
+
+.add{
+    background-color: rgb(67, 145, 145);
+    display: flex;
+    justify-content: center;
+    padding-top: 6em;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.6);
+}
+
+.add form input{
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
+.add form label{
+    display: block;
+    color: aliceblue;
+    margin-top: 1em;
+    margin-bottom: 0.7em;
+}
+
+.add form button{
+    margin-top: 2em;
+    border: none;
+    padding: 16px 48px;
+    border-radius: 10px;
+    color: aliceblue;
+    background-color: rgba(0, 0, 0, 0.624);
+
+}
+
+.add form button:hover{
+    color: black;
+    font-weight: 700;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.624) ;
+}
