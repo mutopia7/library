@@ -1,4 +1,6 @@
 const myLibrary = []
+const addButton = document.querySelector("#add")
+const deleteButton = document.querySelector(".delete")
 
 
 
@@ -19,82 +21,66 @@ function addBookToLibrary(book) {
 
 
 
+// create new card//
+
+function createCard(bookObj) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const fields = [
+        { label: "Book:", value: bookObj.book },
+        { label: "Author:", value: bookObj.author },
+        { label: "Pages:", value: bookObj.pages }
+    ];
+
+    fields.forEach(field => {
+        const title = document.createElement("h4");
+        title.textContent = field.label;
+        card.appendChild(title);
+
+        const value = document.createElement("p");
+        value.textContent = field.value;
+        card.appendChild(value);
+    });
+
+    const readButton = document.createElement("button");
+    readButton.classList.add("readen");
+    readButton.textContent = "Read";
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete");
+    deleteButton.textContent = "Delete";
+
+    card.append(readButton, deleteButton);
+
+    return card;
+}
 
 
-
-// dom manipulation //
-
-
-
-
-
-
-
-
-
-
-
-// form inputs //
-
-
-
-
-const addButton = document.querySelector("#add")
+// add button function //
 
 addButton.addEventListener("click", (e) => {
-    e.preventDefault()
+    e.preventDefault(); // Prevent form refresh //
 
-    const title3 = document.querySelector("#book");
-    const author3 = document.querySelector("#author");
-    const pages3 = document.querySelector("#pages");
+    const title = document.querySelector("#book").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector("#pages").value;
 
-    const book3 = new Book(title3.value, author3.value , pages3.value);
-    addBookToLibrary(book3);
+    const newBook = new Book(title, author, pages);
+    addBookToLibrary(newBook);
 
-    console.log(book3)
+    const library = document.querySelector(".library");
+    const newCard = createCard(newBook);
 
-    const libraryInHtml = document.querySelector(".library")
+    if (library.firstChild) {
+        library.insertBefore(newCard, library.firstChild);
+    } else {
+        library.appendChild(newCard);
+    }
 
-    const div1 = document.createElement("div");
-    div1.setAttribute("id", "div1");
-    div1.classList.add("card")
-    libraryInHtml.appendChild(div1);
-
-    const h4Book = document.createElement("h4");
-    h4Book.textContent = "Book:";
-    div1.appendChild(h4Book);
-
-    const pBook1 = document.createElement("p");
-    pBook1.textContent = book3.book;
-    div1.appendChild(pBook1);
-
-    const h4Author = document.createElement("h4");
-    h4Author.textContent = "Author:";
-    div1.appendChild(h4Author);
-
-    const pAuthor1 = document.createElement("p");
-    pAuthor1.textContent = book3.author;
-    div1.appendChild(pAuthor1);
-
-    const h4Pages = document.createElement("h4");
-    h4Pages.textContent = "Pages:";
-    div1.appendChild(h4Pages);
-
-    const pPages1 = document.createElement("p");
-    pPages1.textContent = book3.pages;
-    div1.appendChild(pPages1);
-
-    const readButoon1 = document.createElement("button")
-    readButoon1.classList.add("readen");
-    readButoon1.textContent = "Read";
-    div1.appendChild(readButoon1);
-
-    const deleteButton1 = document.createElement("button")
-    deleteButton1.classList.add("delete");
-    deleteButton1.textContent = "Delete"
-    div1.appendChild(deleteButton1);
+    console.log(myLibrary)
+});
 
 
+// delete button function //
 
-
-})
