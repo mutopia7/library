@@ -4,7 +4,7 @@ const addButton = document.querySelector("#add")
 
 
 
-function Book(book, author, pages) {
+function Book(book, author, pages, read = false) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor")
     }
@@ -12,7 +12,12 @@ function Book(book, author, pages) {
     this.author = author;
     this.pages = pages;
     this.id = crypto.randomUUID();
+    this.read = read;
 }
+
+Book.prototype.toggleReadStatus = function() {
+    this.read = !this.read; // برعکس کردن وضعیت خوانده شده
+  };
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -47,7 +52,12 @@ function createCard(bookObj) {
 
     const readButton = document.createElement("button");
     readButton.classList.add("readen");
-    readButton.textContent = "Read";
+    readButton.textContent = bookObj.read ? "Unread" : "Read";
+
+    readButton.addEventListener("click", () => {
+        bookObj.toggleReadStatus(); // وضعیت کتاب رو تغییر بده
+        readButton.textContent = bookObj.read ? "Unread" : "Read"; // متن دکمه رو آپدیت کن
+      });
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete");
@@ -82,8 +92,9 @@ addButton.addEventListener("click", (e) => {
     const title = document.querySelector("#book").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
+    const readStatus = document.querySelector("#read-status").checked;
 
-    const newBook = new Book(title, author, pages);
+    const newBook = new Book(title, author, pages,readStatus);
     addBookToLibrary(newBook);
 
     const library = document.querySelector(".library");

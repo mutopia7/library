@@ -107,3 +107,8 @@ html, body{
     color: aliceblue;
 }
 
+.delete:hover{
+    background-color: transparent;
+    border: 1px solid rgb(140, 50, 50);
+    color: rgb(140, 50, 50);
+}
