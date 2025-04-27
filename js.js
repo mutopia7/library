@@ -1,6 +1,6 @@
 const myLibrary = []
 const addButton = document.querySelector("#add")
-const deleteButton = document.querySelector(".delete")
+
 
 
 
@@ -11,11 +11,12 @@ function Book(book, author, pages) {
     this.book = book;
     this.author = author;
     this.pages = pages;
+    this.id = crypto.randomUUID();
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-    return
+    return myLibrary
 }
 
 
@@ -26,6 +27,7 @@ function addBookToLibrary(book) {
 function createCard(bookObj) {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.dataset.id = bookObj.id;
 
     const fields = [
         { label: "Book:", value: bookObj.book },
@@ -50,6 +52,21 @@ function createCard(bookObj) {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete");
     deleteButton.textContent = "Delete";
+
+    // delete button function //
+
+    deleteButton.addEventListener("click", () => {
+        const cardId = card.dataset.id;
+
+        // حذف از آرایه myLibrary
+        const index = myLibrary.findIndex(book => book.id === cardId);
+        if (index !== -1) {
+            myLibrary.splice(index, 1);
+        }
+
+        // حذف کارت از DOM
+        card.remove();
+    });
 
     card.append(readButton, deleteButton);
 
@@ -79,8 +96,9 @@ addButton.addEventListener("click", (e) => {
     }
 
     console.log(myLibrary)
+    
 });
 
 
-// delete button function //
+
 
