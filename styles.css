@@ -64,9 +64,13 @@ body {
 
 /* library section */
 
+main{
+    background-color: aliceblue;
+}
+
 .library {
     background-color: aliceblue;
-    padding: 6em 6em;
+    padding: 2em 6em;
     display: grid;
     column-gap: 2em;
     row-gap: 2em;
@@ -129,8 +133,40 @@ label[for="read-status"] {
 }
 
 .error {
-    color: black
+    color: black;
     font-size: 1em;
     margin-top: 4px;
     display: block;
 }
+
+.card.read {
+    background-color: #d4edda;
+    /* یه سبز روشن قشنگ */
+    border: 2px solid #28a745;
+}
+
+
+.controls {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    margin: 2em;
+  }
+  
+  .controls button {
+    padding: 10px 20px;
+    border: none;
+    background-color: teal;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .controls button:hover {
+    background-color: #006666;
+  }
+  
+
+
+  

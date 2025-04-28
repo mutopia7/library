@@ -22,7 +22,7 @@
                 <label for="pages">Pages:</label>
                 <input type="number"  id="pages" name="pages" required>
                 <span class="error" id="pages-error"></span>
-                
+
                 <label for="read-status">
                     Already Read
                     <input type="checkbox" id="read-status" name="read-status">
@@ -32,7 +32,16 @@
             </form>
         </section>
 
-        <main class="library">
+        <main>
+            <h1 style="display: flex; justify-content: center; margin-top:20px">My Library</h1>
+            <div class="controls">
+                
+                <button id="clear-all">Clear All</button>
+                <button id="show-read">Show Read Books</button>
+                <button id="show-unread">Show Unread Books</button>
+              </div>
+            <div class="library">
+            </div>
         </main>
     </div>
     

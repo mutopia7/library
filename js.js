@@ -57,6 +57,12 @@ function createCard(bookObj) {
     readButton.addEventListener("click", () => {
         bookObj.toggleReadStatus(); // وضعیت کتاب رو تغییر بده
         readButton.textContent = bookObj.read ? "Unread" : "Read"; // متن دکمه رو آپدیت کن
+
+        if (bookObj.read) {
+            card.classList.add("read");
+          } else {
+            card.classList.remove("read");
+          };
     });
 
     const deleteButton = document.createElement("button");
@@ -153,4 +159,43 @@ addButton.addEventListener("click", (e) => {
     pagesInput.value = "";
     document.querySelector("#read-status").checked = false;
   });
+
+
+
+// controls button //
+
+const clearAllButton = document.querySelector("#clear-all");
+const showReadButton = document.querySelector("#show-read");
+const showUnreadButton = document.querySelector("#show-unread");
+const library = document.querySelector(".library");
+
+// دکمه Clear All
+clearAllButton.addEventListener("click", () => {
+  myLibrary.length = 0; // آرایه خالی بشه
+  library.innerHTML = ""; // همه کارت ها از صفحه پاک بشن
+});
+
+// دکمه Show Read Books
+showReadButton.addEventListener("click", () => {
+  library.innerHTML = ""; // صفحه خالی کن
+  myLibrary
+    .filter(book => book.read) // فقط کتاب‌های خوانده شده
+    .forEach(book => {
+      const card = createCard(book);
+      card.classList.add("read");
+      library.appendChild(card);
+    });
+});
+
+// دکمه Show Unread Books
+showUnreadButton.addEventListener("click", () => {
+  library.innerHTML = ""; // صفحه خالی کن
+  myLibrary
+    .filter(book => !book.read) // فقط کتاب‌های نخوانده
+    .forEach(book => {
+      const card = createCard(book);
+      library.appendChild(card);
+    });
+});
+
   
