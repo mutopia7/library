@@ -15,9 +15,9 @@ function Book(book, author, pages, read = false) {
     this.read = read;
 }
 
-Book.prototype.toggleReadStatus = function() {
+Book.prototype.toggleReadStatus = function () {
     this.read = !this.read; // برعکس کردن وضعیت خوانده شده
-  };
+};
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -57,7 +57,7 @@ function createCard(bookObj) {
     readButton.addEventListener("click", () => {
         bookObj.toggleReadStatus(); // وضعیت کتاب رو تغییر بده
         readButton.textContent = bookObj.read ? "Unread" : "Read"; // متن دکمه رو آپدیت کن
-      });
+    });
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete");
@@ -87,29 +87,70 @@ function createCard(bookObj) {
 // add button function //
 
 addButton.addEventListener("click", (e) => {
-    e.preventDefault(); // Prevent form refresh //
-
-    const title = document.querySelector("#book").value;
-    const author = document.querySelector("#author").value;
-    const pages = document.querySelector("#pages").value;
+    e.preventDefault();
+  
+    const titleInput = document.querySelector("#book");
+    const authorInput = document.querySelector("#author");
+    const pagesInput = document.querySelector("#pages");
     const readStatus = document.querySelector("#read-status").checked;
-
-    const newBook = new Book(title, author, pages,readStatus);
+  
+    const titleError = document.querySelector("#book-error");
+    const authorError = document.querySelector("#author-error");
+    const pagesError = document.querySelector("#pages-error");
+  
+    const title = titleInput.value.trim();
+    const author = authorInput.value.trim();
+    const pagesValue = pagesInput.value.trim();
+    const pages = Number(pagesValue);
+  
+    // اول پاک کنیم خطاهای قبلی رو
+    titleError.textContent = "";
+    authorError.textContent = "";
+    pagesError.textContent = "";
+  
+    let isValid = true;
+  
+    // چک عنوان کتاب
+    if (!title) {
+      titleError.textContent = "Title is required.";
+      isValid = false;
+    }
+  
+    // چک نویسنده
+    if (!author) {
+      authorError.textContent = "Author is required.";
+      isValid = false;
+    }
+  
+    // چک صفحات
+    if (!pagesValue) {
+      pagesError.textContent = "Pages is required.";
+      isValid = false;
+    } else if (pages <= 0 || isNaN(pages)) {
+      pagesError.textContent = "Enter a positive number.";
+      isValid = false;
+    }
+  
+    if (!isValid) {
+      return; // اگر خطایی بود، اضافه نکن
+    }
+  
+    const newBook = new Book(title, author, pages, readStatus);
     addBookToLibrary(newBook);
-
+  
     const library = document.querySelector(".library");
     const newCard = createCard(newBook);
-
+  
     if (library.firstChild) {
-        library.insertBefore(newCard, library.firstChild);
+      library.insertBefore(newCard, library.firstChild);
     } else {
-        library.appendChild(newCard);
+      library.appendChild(newCard);
     }
-
-    console.log(myLibrary)
-    
-});
-
-
-
-
+  
+    // ریست فرم
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    document.querySelector("#read-status").checked = false;
+  });
+  

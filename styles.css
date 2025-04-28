@@ -1,34 +1,35 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     font-family: sans-serif;
 }
 
-html, body{
+html,
+body {
     height: 100%;
 }
 
-.all{
+.all {
     display: grid;
     min-height: 100%;
     grid-template: 100% / 25% 75%;
 }
 
-.add{
+.add {
     background-color: rgb(67, 145, 145);
     display: flex;
     justify-content: center;
     padding-top: 6em;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.6);
-    
+
 }
 
-.add form{
+.add form {
     position: fixed;
 }
 
-.add form input{
+.add form input {
     display: block;
     width: 100%;
     padding: 8px 12px;
@@ -37,14 +38,14 @@ html, body{
     border-radius: 10px;
 }
 
-.add form label{
+.add form label {
     display: block;
     color: aliceblue;
     margin-top: 1em;
     margin-bottom: 0.7em;
 }
 
-.add form button{
+.add form button {
     margin-top: 2em;
     border: none;
     padding: 16px 48px;
@@ -54,26 +55,26 @@ html, body{
 
 }
 
-.add form button:hover{
+.add form button:hover {
     color: black;
     font-weight: 700;
     background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.624) ;
+    border: 1px solid rgba(0, 0, 0, 0.624);
 }
 
 /* library section */
 
-.library{
+.library {
     background-color: aliceblue;
     padding: 6em 6em;
     display: grid;
     column-gap: 2em;
     row-gap: 2em;
-    grid-template: 300px / repeat(3, 1fr) ;
+    grid-template: 300px / repeat(3, 1fr);
     grid-auto-rows: 300px;
 }
 
-.card{
+.card {
     background-color: beige;
     border-radius: 20px;
     display: flex;
@@ -85,13 +86,13 @@ html, body{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.card p{
+.card p {
     border-bottom: 1px solid gray;
     padding-bottom: 3px;
     color: rgb(102, 36, 36);
 }
 
-.readen{
+.readen {
     border: none;
     background-color: rgb(50, 140, 50);
     padding: 10px 20px;
@@ -99,7 +100,7 @@ html, body{
     color: aliceblue;
 }
 
-.delete{
+.delete {
     border: none;
     background-color: rgb(140, 50, 50);
     padding: 10px 20px;
@@ -107,8 +108,29 @@ html, body{
     color: aliceblue;
 }
 
-.delete:hover{
+.delete:hover {
     background-color: transparent;
     border: 1px solid rgb(140, 50, 50);
     color: rgb(140, 50, 50);
+}
+
+#read-status {
+    width: 20px;
+    height: 20px;
+    accent-color: white;
+    cursor: pointer;
+}
+
+label[for="read-status"] {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    /* فاصله بین چک‌باکس و متن */
+}
+
+.error {
+    color: black
+    font-size: 1em;
+    margin-top: 4px;
+    display: block;
 }
