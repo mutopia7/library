@@ -4,20 +4,35 @@ const addButton = document.querySelector("#add")
 
 
 
-function Book(book, author, pages, read = false) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor")
-    }
+// function Book(book, author, pages, read = false) {
+//     if (!new.target) {
+//         throw Error("You must use the 'new' operator to call the constructor")
+//     }
+//     this.book = book;
+//     this.author = author;
+//     this.pages = pages;
+//     this.id = crypto.randomUUID();
+//     this.read = read;
+// }
+
+// Book.prototype.toggleReadStatus = function () {
+//     this.read = !this.read; // برعکس کردن وضعیت خوانده شده
+// };
+
+
+class Book{
+  constructor(book, author, pages, read = false){
     this.book = book;
     this.author = author;
     this.pages = pages;
     this.id = crypto.randomUUID();
     this.read = read;
-}
+  }
 
-Book.prototype.toggleReadStatus = function () {
-    this.read = !this.read; // برعکس کردن وضعیت خوانده شده
-};
+  toggleReadStatus(){
+    this.read = !this.read;
+  }
+}
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
@@ -32,6 +47,7 @@ function addBookToLibrary(book) {
 function createCard(bookObj) {
     const card = document.createElement("div");
     card.classList.add("card");
+    if (bookObj.read){card.classList.add("read")};
     card.dataset.id = bookObj.id;
 
     const fields = [
