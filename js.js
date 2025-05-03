@@ -35,7 +35,7 @@ class Book{
 }
 
 function addBookToLibrary(book) {
-    myLibrary.push(book);
+    myLibrary.unshift(book);
     return myLibrary
 }
 
@@ -184,6 +184,7 @@ const clearAllButton = document.querySelector("#clear-all");
 const showReadButton = document.querySelector("#show-read");
 const showUnreadButton = document.querySelector("#show-unread");
 const library = document.querySelector(".library");
+const showAllButton = document.querySelector("#show-all");
 
 // دکمه Clear All
 clearAllButton.addEventListener("click", () => {
@@ -213,5 +214,14 @@ showUnreadButton.addEventListener("click", () => {
       library.appendChild(card);
     });
 });
+
+// Show All button
+showAllButton.addEventListener("click", () => {
+  library.innerHTML = "";
+  myLibrary.forEach(book => {
+    const card = createCard(book);
+    library.appendChild(card);
+  })
+})
 
   
